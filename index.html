@@ -1,0 +1,88 @@
+<html lang="en" style="height: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style="height: 100%;">
+    <div style="position: absolute; top: 20%; right: 10%;">
+        <button style="border: 1;border-radius: 0.1ch;" onclick="update()">up</button>
+        <button style="border: 1;border-radius: 0.1ch;" onclick="updateU()">down</button>
+    </div>
+    <div id="slide" style="height: 100%;width: 100%;overflow: scroll;">
+        <div id="slide0" style="width: 100%;background-color: green;">
+            <button onclick="update(0)">down</button>
+        </div>
+        <div id="slide1" style="width: 100%;background-color: blue;">
+            <button onclick="update(1)">down</button>
+            <button onclick="updateU(1)">up</button>
+        </div>
+        <div id="slide2" style="width: 100%;background-color: red;">
+            <button onclick="update(2)">down</button>
+            <button onclick="updateU(2)">up</button>
+        </div>
+        <div id="slide3" style="width: 100%;background-color: yellow;">
+            <button onclick="update(3)">down</button>
+            <button onclick="updateU(3)">up</button>
+        </div>
+    </div>
+    <script src="./swipeevents.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="./touchSwipe.min.js"></script>
+    <script>
+        // document.addEventListener('swiped-up', function(e) {
+        //     update();
+        // });
+        // document.addEventListener('swiped-down', function(e) {
+        //     updateU();
+        // });
+        $("#slide").swipe({
+            swipe:function(event, direction, distance, duration, fingerCount){
+                $('#slide0').text("You swiped " + direction + " for " + distance + "px" );
+                if(direction == 'up') update();
+                else updateU();
+            },
+            threshold:200
+        });
+        let images = ['slide1', 'slide2', 'slide3', 'slide4'], currentSlide = 0;
+        const down = (num) => {
+            num = Number(num);
+            if(num == 1) {
+                rest = '10%';
+            } else if(num == 2) {
+                rest = '15%';
+            } else if(num == 3) {
+                rest = '10%';
+            } else if(num == 4) {
+                rest = '0%';
+            }
+            for(let i=0; i<num-1; i++)
+                document.querySelector(`#slide${i}`).style.height = '0%';
+    
+            document.querySelector(`#slide${num-1}`).style.height = '70%';
+
+            for(let i=num; i<4; i++) {
+                document.querySelector(`#slide${i}`).style.height = rest;
+            }
+        }
+
+        down(1);
+
+        const update = () => {
+            currentSlide += 1;
+            down(currentSlide + 1);
+        }
+
+        const updateU = () => {
+            currentSlide -= 1;
+            down(currentSlide);
+        }
+    </script>
+
+</body>
+</html>
