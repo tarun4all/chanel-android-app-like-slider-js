@@ -13,7 +13,7 @@
 </head>
 <body style="height: 100%; overflow: hidden;">
     <div style="height: 100%; width: 100%;">
-        <div id="main" style="height: 100vh;width: 100%; overflow: hidden;">
+        <div id="main" style="height: 100vh;width: 100%; overflow: hidden;position: absolute;">
             <div class="parallax" id="slide" style="bottom: 0px; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; position: absolute; background-image: url(https://i.pinimg.com/originals/8d/f8/e6/8df8e6b916a58b27c1ad4a9830378e81.jpg);">
                 <h2>Ironman</h2>
             </div>
@@ -62,7 +62,6 @@
             document.getElementById('slide4').style.top = '90%';
             document.getElementById('slide').style.bottom = '0';
             currentSlide += 1;
-            reduceDiv();
         } else if(currentSlide == 1) {
             // document.getElementById('slide1').style.top = '0';
             document.getElementById('slide2').style.top = '0';
@@ -70,18 +69,15 @@
             document.getElementById('slide4').style.top = '80%';
             document.getElementById('slide1').style.bottom = '0';
             currentSlide += 1;
-            reduceDiv();
         } else if(currentSlide == 2) {
             document.getElementById('slide3').style.top = '0';
             document.getElementById('slide4').style.top = '70%';
             document.getElementById('slide2').style.bottom = '0';
             currentSlide += 1;
-            reduceDiv();
         } else if(currentSlide == 3) {
             document.getElementById('slide4').style.top = '0';
             document.getElementById('slide3').style.bottom = '0';
             currentSlide += 1;
-            reduceDiv();
         }
     };
 
